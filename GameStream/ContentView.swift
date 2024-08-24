@@ -56,6 +56,10 @@ struct InicioYRegistroView: View {
     }
 }
 
+func iniciarSesion() {
+    print("Estoy iniciando sesión")
+}
+
 struct InicioSesionView: View {
     @State var email = ""
     @State var password = ""
@@ -86,6 +90,23 @@ struct InicioSesionView: View {
                 }
                 
                 Divider().frame(height: 1).background(Color("dark-cian")).padding(.bottom)
+                
+                Text("Olvidaste tu contraseña?")
+                    .font(.footnote)
+                    .frame(width: 300, alignment: .trailing).foregroundColor(Color("dark-cian"))
+                    .padding(.bottom)
+                
+                Button(action: iniciarSesion, label: {
+                    Text("INICIAR SESIÓN")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18))
+                        .overlay(RoundedRectangle(cornerRadius: 6.0)
+                        .stroke(Color("dark-cian")
+                                ,lineWidth: 1.0)
+                        .shadow(color: .white, radius: 6))
+                })
             }.padding(.horizontal, 77.0)
         }
         
