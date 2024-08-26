@@ -153,14 +153,15 @@ struct RegistroView: View {
                 
                 VStack(alignment: .leading) {
                     VStack(alignment: .leading) {
-                        Text("Correo Electrónico*").foregroundColor(Color("dark-cian"))
+                        Text("Correo Electrónico*").frame(width: 300, alignment: .leading).foregroundColor(Color("dark-cian"))
+                        
                         
                         ZStack(alignment: .leading) {
                             if email.isEmpty {
                                 Text("ejemplo@gmail.com").font(.caption).foregroundColor(.gray)
                             }
                             
-                            TextField("", text: $email)
+                            TextField("", text: $email).foregroundColor(.white)
                         }
                         
                         Divider().frame(height: 1).background(Color("dark-cian")).padding(.bottom)
@@ -172,7 +173,7 @@ struct RegistroView: View {
                                 Text("ejemplo@gmail.com").font(.caption).foregroundColor(.gray)
                             }
                             
-                            SecureField("", text: $password)
+                            SecureField("", text: $password).foregroundColor(.white)
                         }
                         
                         Divider().frame(height: 1).background(Color("dark-cian")).padding(.bottom)
@@ -184,12 +185,11 @@ struct RegistroView: View {
                                 Text("ejemplo@gmail.com").font(.caption).foregroundColor(.gray)
                             }
                             
-                            SecureField("", text: $confirmPassword)
-                        }.padding(.bottom)
-                        Text("Olvidaste tu contraseña?")
-                            .font(.footnote)
-                            .frame(width: 300, alignment: .trailing).foregroundColor(Color("dark-cian"))
-                            .padding(.bottom)
+                            SecureField("", text: $confirmPassword).foregroundColor(.white)
+                        }
+                        
+                        Divider().frame(height: 1).background(Color("dark-cian")).padding(.bottom)
+                        
                     }
                     
                     Button(action: iniciarSesion, label: {
@@ -207,7 +207,7 @@ struct RegistroView: View {
                     Text("Iniciar sesión con redes sociales").frame(maxWidth: .infinity, alignment: .center).foregroundColor(.white)
                     
                     HStack {
-                        Button(action: {print("Inicio de sesión con Twitter")}, label: {
+                        Button(action: {print("Inicio de sesión con Facebook")}, label: {
                             Text("Facebook")
                                 .font(.subheadline)
                                 .fontWeight(.bold)
