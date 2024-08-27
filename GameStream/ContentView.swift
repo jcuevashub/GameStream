@@ -10,22 +10,24 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         
-        ZStack {
-            Spacer()
-            Color(red: 19/255, green: 30/255, blue: 53/255, opacity: 1.0).ignoresSafeArea()
-            
-            VStack {
-                Image("appLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.bottom, 42)
+        NavigationStack {
+            ZStack {
+                Spacer()
+                Color(red: 19/255, green: 30/255, blue: 53/255, opacity: 1.0).ignoresSafeArea()
                 
-                InicioYRegistroView()
-            }
+                VStack {
+                    Image("appLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.bottom, 42)
+                    
+                    InicioYRegistroView()
+                }
+            }.navigationBarHidden(true)
         }
     }
 }
 
 
 struct InicioYRegistroView: View {
-    @State var tipoInicioSesion = false
+    @State var tipoInicioSesion = true
     
     var body: some View {
         VStack {
@@ -56,9 +58,7 @@ struct InicioYRegistroView: View {
     }
 }
 
-func iniciarSesion() {
-    print("Estoy iniciando sesión")
-}
+
 
 func registrate() {
     print("Te registraste")
@@ -67,6 +67,7 @@ func registrate() {
 struct InicioSesionView: View {
     @State var email = ""
     @State var password = ""
+    @State var isPantallaHomeActive = false
     
     var body: some View {
         ScrollView {
@@ -78,7 +79,7 @@ struct InicioSesionView: View {
                         Text("ejemplo@gmail.com").font(.caption).foregroundColor(.gray)
                     }
                     
-                    TextField("", text: $email)
+                    TextField("", text: $email).foregroundColor(.white)
                 }
                 
                 Divider().frame(height: 1).background(Color("dark-cian")).padding(.bottom)
@@ -90,7 +91,7 @@ struct InicioSesionView: View {
                         Text("ejemplo@gmail.com").font(.caption).foregroundColor(.gray)
                     }
                     
-                    SecureField("", text: $password)
+                    SecureField("", text: $password).foregroundColor(.white)
                 }
                 
                 Divider().frame(height: 1).background(Color("dark-cian")).padding(.bottom)
@@ -112,8 +113,15 @@ struct InicioSesionView: View {
                                 .shadow(color: .white, radius: 6))
                 })
             }.padding(.horizontal, 77.0)
-        }
         
+        }.navigationDestination(isPresented: $isPantallaHomeActive) {
+            Home()
+        }
+    }
+    
+    func iniciarSesion() {
+        print("Estoy iniciando sesión")
+        isPantallaHomeActive = true
     }
 }
 
@@ -192,7 +200,7 @@ struct RegistroView: View {
                         
                     }
                     
-                    Button(action: iniciarSesion, label: {
+                    Button(action: registrate, label: {
                         Text("REGÍSTRATE")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
