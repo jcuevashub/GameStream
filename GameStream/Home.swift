@@ -25,9 +25,9 @@ struct Home: View {
             
             PantallaHome()
                 .font(.system(size: 30, weight: .bold, design: .rounded)).tabItem {
-                Image(systemName: "house")
-                Text("Inicio")
-            }.tag(2)
+                    Image(systemName: "house")
+                    Text("Inicio")
+                }.tag(2)
             
             Text("Favoritos").font(.system(size: 30, weight: .bold, design: .rounded)).tabItem {
                 Image(systemName: "heart")
@@ -39,24 +39,43 @@ struct Home: View {
     init() {
         UITabBar.appearance().backgroundColor = UIColor(Color("tabBar-color"))
         UITabBar.appearance().unselectedItemTintColor = UIColor.gray
-
+        
         print("Iniciando las vistar de home")
     }
 }
 
 struct PantallaHome: View {
-    
+    @State var textoBusqueda = ""
     var body: some View {
         ZStack {
             Color("marine").ignoresSafeArea()
-
+            
             VStack {
-                Text("Iniciando las vistar de home")
+                Image("appLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.bottom, 11.0)
+                
+                HStack {
+                    Button(action: busqueda, label: {
+                        Image(systemName: "magnifyingglass").foregroundColor(textoBusqueda.isEmpty ? Color(.yellow) : Color("dark-cian"))
+                    })
+                    
+                    ZStack(alignment: .leading) {
+                        if textoBusqueda.isEmpty {
+                            Text("Buscar un video").foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
+                        }
+                        
+                        TextField("", text: $textoBusqueda).foregroundColor(.white)
+                    }
+                }.padding([.top, .leading, .bottom], 11.0).background(Color("blue-gray")).clipShape(Capsule())
+                
             }.padding(.horizontal, 18)
             
         }.navigationBarHidden(true)
-         .navigationBarBackButtonHidden(true)
-      
+            .navigationBarBackButtonHidden(true)
+        
+    }
+    
+    func busqueda() {
+        print("buscando.. \(textoBusqueda)")
     }
 }
 
