@@ -117,7 +117,6 @@ struct SubModuloHome: View {
                             .background(Color("blue-gray")).font(.title3)
                     }
                 })
-                
                 Image(systemName: "play.circle.fill")
                     .resizable()
                     .foregroundColor(.white)
@@ -125,9 +124,7 @@ struct SubModuloHome: View {
                 
             }.frame(minWidth: 0,    maxWidth: .infinity, alignment: .center)
                 .padding(.vertical)
-                .navigationDestination(isPresented: $isPlayerActive) {
-                    VideoPlayer(player: AVPlayer(url: URL(string: url)!)).frame(width: 400, height: 300)
-                }
+             
             
             Text("CATEGORÍA SUGERIDAS PARA TI")
                 .font(.title3)
@@ -221,6 +218,7 @@ struct SubModuloHome: View {
                     })
                 }
             }
+            
             
         }
     }

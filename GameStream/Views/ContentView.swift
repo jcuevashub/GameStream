@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
         
         NavigationStack {
@@ -111,11 +112,11 @@ struct InicioSesionView: View {
                             .stroke(Color("dark-cian")
                                     ,lineWidth: 1.0)
                                 .shadow(color: .white, radius: 6))
-                })
+                }).navigationDestination(isPresented: $isPantallaHomeActive) {
+                    Home()
+                }
             }.padding(.horizontal, 77.0)
         
-        }.navigationDestination(isPresented: $isPantallaHomeActive) {
-            Home()
         }
     }
     
