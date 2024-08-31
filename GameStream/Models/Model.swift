@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Game
-struct Game: Codable {
+struct Game: Codable, Hashable {
     let title, studio, contentRaiting, publicationYear: String
     let description: String
     let platforms, tags: [String]
@@ -17,7 +17,7 @@ struct Game: Codable {
 }
 
 // MARK: - VideosUrls
-struct VideosUrls: Codable {
+struct VideosUrls: Codable, Hashable {
     let mobile, tablet: String
 }
 

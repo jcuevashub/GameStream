@@ -11,11 +11,11 @@ class GameViewModel: ObservableObject {
     @Published var gamesInfo = [Game]()
     
     init() {
-        let url = URL(string: "https://gamestreamapi.herokuapp.com/api/games")!
-        
-        var request = URLRequest(url: url)
-        
-        request.httpMethod = "GET"
+        guard let url = URL(string: "https://gamestreamapi.herokuapp.com/api/games") else {
+            print("URL inválida")
+            return
+        }
+        let request = URLRequest(url: url)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             
@@ -24,7 +24,7 @@ class GameViewModel: ObservableObject {
                     print("tamaño del json \(jsonData)")
                     
                     let decodeData = try
-                        JSONDecoder().decode([Game].self, from: jsonData)
+                    JSONDecoder().decode([Game].self, from: jsonData)
                     
                     DispatchQueue.main.async {
                         self.gamesInfo.append(contentsOf: decodeData)
@@ -34,6 +34,6 @@ class GameViewModel: ObservableObject {
                 print("Error: \(error)")
             }
             
-        }
+        }.resume()
     }
 }
