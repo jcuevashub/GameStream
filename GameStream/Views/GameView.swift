@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct GameView: View {
     @ObservedObject var todosLosVideoJuegos = GameViewModel()
@@ -50,7 +51,11 @@ struct GameView: View {
                                 descripcion = juego.description
                        
                             }, label: {
-                                Text(juego.title) // Usando el título del juego en el botón
+                                KFImage(URL(string: juego.galleryImages[0])!)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .clipShape(RoundedRectangle.init(cornerRadius: 4))
+                                    .padding(.bottom, 12)
                             })
                         }
                     }
