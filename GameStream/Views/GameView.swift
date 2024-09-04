@@ -19,10 +19,16 @@ struct GameView: View {
     
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color("marine").ignoresSafeArea()
+            VStack {
+                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            }
+        }
+   
     }
 }
 
-//#Preview {
-//    GameView()
-//}
+#Preview {
+    GameView(url: "ejemplo.com", titulo: "Sonic", studio: "Sega", calificacion: "E+", anoPublicacion: "1991", descripcion: "Juego de Sega Genesis", tags: ["",""], imgsUrl: ["",""])
+}
