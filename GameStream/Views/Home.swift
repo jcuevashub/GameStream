@@ -50,6 +50,7 @@ struct Home: View {
 
 struct PantallaHome: View {
     @State var textoBusqueda = ""
+    
     var body: some View {
         ZStack {
             Color("marine").ignoresSafeArea()
@@ -57,22 +58,6 @@ struct PantallaHome: View {
             ScrollView {
                 VStack {
                     Image("appLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.bottom, 11.0)
-                    
-                    HStack {
-                        Button(action: busqueda, label: {
-                            Image(systemName: "magnifyingglass").foregroundColor(textoBusqueda.isEmpty ? Color(.yellow) : Color("dark-cian"))                .font(.title3)
-                            
-                        })
-                        
-                        ZStack(alignment: .leading) {
-                            if textoBusqueda.isEmpty {
-                                Text("Buscar un video").foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))                .font(.title3)
-                                
-                            }
-                            
-                            TextField("", text: $textoBusqueda).foregroundColor(.white)
-                        }
-                    }.padding([.top, .leading, .bottom], 11.0).background(Color("blue-gray")).clipShape(Capsule())
                     SubModuloHome()
                 }.padding(.horizontal, 18)
             }
@@ -82,19 +67,42 @@ struct PantallaHome: View {
         
     }
     
-    func busqueda() {
-        print("buscando.. \(textoBusqueda)")
-    }
+//    func busqueda() {
+//        print("buscando.. \(textoBusqueda)")
+//    }
 }
 
 
 struct SubModuloHome: View {
+    @State var isGameInfoEmpty = false
+    @State var textoBusqueda = ""
     @State var url = "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4"
     @State var isPlayerActive = false
     let urlVideos:[String] = ["https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie480.mp4"]
     
     var body: some View {
         VStack {
+            
+            HStack {
+                Button(action: {
+                    watchGame(name: textoBusqueda)
+                }, label: {
+                    Image(systemName: "magnifyingglass").foregroundColor(textoBusqueda.isEmpty ? Color(.yellow) : Color("dark-cian"))                .font(.title3)
+                    
+                }).alert(isPresented: $isGameInfoEmpty) {
+                    Alert(title: Text("Error"), message: Text("No se encontró el juego"), dismissButton: .default(Text("Entendido")))
+                }
+                
+                ZStack(alignment: .leading) {
+                    if textoBusqueda.isEmpty {
+                        Text("Buscar un video").foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))                .font(.title3)
+                        
+                    }
+                    
+                    TextField("", text: $textoBusqueda).foregroundColor(.white)
+                }
+            }.padding([.top, .leading, .bottom], 11.0).background(Color("blue-gray")).clipShape(Capsule())
+            
             Text("LOS MÁS POPULARES")
                 .font(.title3)
                 .foregroundColor(.white)
@@ -218,11 +226,18 @@ struct SubModuloHome: View {
                     })
                 }
             }
-            
-            
         }
+        
     }
+    
+    func watchGame(name: String) {
+        print("Buscar juego")
+        isGameInfoEmpty = true
+    }
+
 }
+
+
 #Preview {
     Home()
 }
