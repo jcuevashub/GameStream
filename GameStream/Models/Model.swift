@@ -7,6 +7,18 @@
 
 import Foundation
 
+
+
+struct Resultados: Codable {
+    
+    var results:[Game]
+    
+}
+
+struct Games: Codable {
+    var games:[Game]
+}
+
 // MARK: - Game
 struct Game: Codable, Hashable {
     let title, studio, contentRaiting, publicationYear: String
@@ -20,5 +32,3 @@ struct Game: Codable, Hashable {
 struct VideosUrls: Codable, Hashable {
     let mobile, tablet: String
 }
-
-typealias Games = [Game]

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8B6CB7B22C891308000A00CE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6CB7B12C891308000A00CE /* Kingfisher */; };
 		8B6CB7B42C891765000A00CE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CB7B32C891765000A00CE /* GameView.swift */; };
+		8B6CB7B62C8C97C3000A00CE /* SearchGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CB7B52C8C97C3000A00CE /* SearchGame.swift */; };
 		8B8DA6312C77F3BC00E7A71E /* GameStreamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8DA6302C77F3BC00E7A71E /* GameStreamApp.swift */; };
 		8B8DA6332C77F3BC00E7A71E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8DA6322C77F3BC00E7A71E /* ContentView.swift */; };
 		8B8DA6352C77F3BE00E7A71E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B8DA6342C77F3BE00E7A71E /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		8B6CB7B32C891765000A00CE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		8B6CB7B52C8C97C3000A00CE /* SearchGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGame.swift; sourceTree = "<group>"; };
 		8B8DA62D2C77F3BC00E7A71E /* GameStream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameStream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8DA6302C77F3BC00E7A71E /* GameStreamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStreamApp.swift; sourceTree = "<group>"; };
 		8B8DA6322C77F3BC00E7A71E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				8B8DA64B2C8287AB00E7A71E /* GameViewModel.swift */,
+				8B6CB7B52C8C97C3000A00CE /* SearchGame.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				8B8DA6462C81425C00E7A71E /* Profile.swift in Sources */,
 				8B8DA63F2C7D51C700E7A71E /* Home.swift in Sources */,
 				8B6CB7B42C891765000A00CE /* GameView.swift in Sources */,
+				8B6CB7B62C8C97C3000A00CE /* SearchGame.swift in Sources */,
 				8B8DA64C2C8287AB00E7A71E /* GameViewModel.swift in Sources */,
 				8B8DA6482C81427500E7A71E /* Favorites.swift in Sources */,
 				8B8DA6442C81422D00E7A71E /* GamesView.swift in Sources */,
