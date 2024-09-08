@@ -30,7 +30,9 @@ struct Profile: View {
                     
                 }.padding(EdgeInsets(top: 64, leading: 0, bottom: 32, trailing: 0))
                 
+                
                 Text("Ajustes")
+                    .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
                     .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, alignment: .leading).padding(.leading, 18)
@@ -43,8 +45,34 @@ struct Profile: View {
 }
 
 struct ModuloAjustes: View {
+    @State var areNotificationesEnabled = false
+    
     var body: some View {
-      Text("Hola")
+        SettingButton(label: "Cuenta", rightModifier: Text(">").foregroundColor(.white), action: {})
+        SettingButton(label: "Notificaciones", rightModifier: Toggle("", isOn: $areNotificationesEnabled ), action: {})
+        SettingButton(label: "Editar perfil", rightModifier: Text(">").foregroundColor(.white), action: {})
+        SettingButton(label: "Califica esta aplicación", rightModifier: Text(">").foregroundColor(.white), action: {})
+    }
+}
+
+struct SettingButton<Content: View>: View {
+    var label: String
+    var rightModifier: Content?
+    var action: () -> Void
+    
+    var body: some View {
+        VStack{
+            Button(action: action, label: {
+                HStack{
+                    Text(label).foregroundColor(.white)
+                    Spacer()
+                    rightModifier
+                }.padding()
+            })
+            .frame(width: .infinity, height: 60, alignment: .leading)
+            .background(Color("blue-gray"))
+            .clipShape(RoundedRectangle(cornerRadius: 1))
+        }
     }
 }
 
