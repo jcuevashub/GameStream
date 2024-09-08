@@ -18,6 +18,7 @@ struct Profile: View {
             
             VStack {
                 Text("Perfil")
+                    .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
                     .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, alignment: .center)
@@ -28,7 +29,7 @@ struct Profile: View {
                         .frame(width: 118.0, height: 118.0, alignment: .center)
                         .clipShape(Circle())
                     
-                }.padding(EdgeInsets(top: 64, leading: 0, bottom: 32, trailing: 0))
+                }.padding(EdgeInsets(top: 30, leading: 0, bottom: 32, trailing: 0))
                 
                 
                 Text("Ajustes")
@@ -36,9 +37,7 @@ struct Profile: View {
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
                     .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, alignment: .leading).padding(.leading, 18)
-                
                 ModuloAjustes()
-                
             }
         }
     }
@@ -46,12 +45,19 @@ struct Profile: View {
 
 struct ModuloAjustes: View {
     @State var areNotificationesEnabled = false
-    
+    @State var isEditProfileViewActive = false
+
     var body: some View {
-        SettingButton(label: "Cuenta", rightModifier: Text(">").foregroundColor(.white), action: {})
-        SettingButton(label: "Notificaciones", rightModifier: Toggle("", isOn: $areNotificationesEnabled ), action: {})
-        SettingButton(label: "Editar perfil", rightModifier: Text(">").foregroundColor(.white), action: {})
-        SettingButton(label: "Califica esta aplicación", rightModifier: Text(">").foregroundColor(.white), action: {})
+        VStack(spacing: 3){
+            SettingButton(label: "Cuenta", rightModifier: Text(">").foregroundColor(.white), action: {})
+            SettingButton(label: "Notificaciones", rightModifier: Toggle("", isOn: $areNotificationesEnabled ), action: {})
+            SettingButton(label: "Editar perfil", rightModifier: Text(">").foregroundColor(.white), action: {isEditProfileViewActive = true})
+            SettingButton(label: "Califica esta aplicación", rightModifier: Text(">").foregroundColor(.white), action: {})
+        }
+        
+        NavigationLink(destination: EditProfileView(), isActive: $isEditProfileViewActive, label: {
+            EmptyView()
+        })
     }
 }
 
@@ -61,18 +67,20 @@ struct SettingButton<Content: View>: View {
     var action: () -> Void
     
     var body: some View {
-        VStack{
-            Button(action: action, label: {
-                HStack{
-                    Text(label).foregroundColor(.white)
-                    Spacer()
-                    rightModifier
-                }.padding()
-            })
-            .frame(width: .infinity, height: 60, alignment: .leading)
-            .background(Color("blue-gray"))
-            .clipShape(RoundedRectangle(cornerRadius: 1))
-        }
+        
+        Button(action: action, label: {
+            HStack{
+                Text(label)
+                    .font(.title3)
+                    .foregroundColor(.white)
+                Spacer()
+                rightModifier
+            }.padding()
+        })
+        .frame(width: .infinity, height: 60, alignment: .leading)
+        .background(Color("blue-gray"))
+        .clipShape(RoundedRectangle(cornerRadius: 1))
+        
     }
 }
 
