@@ -51,7 +51,7 @@ class ImagePickerViewCoordinator: NSObject, UINavigationControllerDelegate, UIIm
             if let data = UIimage.pngData() {
                 let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 
-                let url = documents.appendingPathComponent("fotoperfil.png")
+                let url = documents.appendingPathComponent("profile.png")
                 
                 do {
                     try data.write(to: url)

@@ -20,12 +20,12 @@ struct EditProfileView: View {
                 VStack {
                     Button(action: {isCameraActive = true}, label: {
                         ZStack {
-                            Image("profile").resizable()
+                            imagenPerfil!.resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 118.0, height: 118.0, alignment: .center)
                                 .clipShape(Circle())
                                 .sheet(isPresented: $isCameraActive, content: {
-                                    SUImagePickerView(sourceType: .photoLibrary, image: self.$imagenPerfil, isPresented: $isCameraActive)
+                                    SUImagePickerView(sourceType: .camera, image: self.$imagenPerfil, isPresented: $isCameraActive)
                                 })
                             
                             Image(systemName: "camera").foregroundColor(.white)

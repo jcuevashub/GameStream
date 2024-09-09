@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Profile: View {
     @State var nombreUsuario = "Lorem"
+    @State var imagenPerfil: UIImage = UIImage(named: "profile")!
     
     var body: some View {
         ZStack {
@@ -24,10 +25,15 @@ struct Profile: View {
                     .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, alignment: .center)
                 
                 VStack{
-                    Image("profile").resizable()
+                    Image(uiImage: imagenPerfil).resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 118.0, height: 118.0, alignment: .center)
                         .clipShape(Circle())
+                    
+                    Text(nombreUsuario)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                        .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, alignment: .center)
                     
                 }.padding(EdgeInsets(top: 30, leading: 0, bottom: 32, trailing: 0))
                 
@@ -40,7 +46,34 @@ struct Profile: View {
                 ModuloAjustes()
                 Spacer()
             }
+        }.onAppear(
+            perform: {
+                //Metodo de recuperacion de imagenes
+                
+                if returnUIImage(named: "profile") != nil {
+                    imagenPerfil = returnUIImage(named: "profile")!
+                } else {
+                    print("No encontré foto de perfil guardad en el dispositivo")
+                }
+                
+                print("Revisando si tengo datos de usuario en mis UserDefaults")
+                
+                if UserDefaults.standard.object(forKey: "datosUsuario") != nil {
+                    nombreUsuario = UserDefaults.standard.stringArray(forKey: "datosUsuario")![2]
+                } else {
+                    print("No encontré informacion del usuario" )
+                }
+            }
+        )
+    }
+    
+    func returnUIImage(named: String) -> UIImage? {
+        if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+            
+            return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named).path)
         }
+        
+        return nil
     }
 }
 
@@ -60,6 +93,7 @@ struct ModuloAjustes: View {
             EmptyView()
         })
     }
+
 }
 
 struct SettingButton<Content: View>: View {
