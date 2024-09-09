@@ -38,6 +38,7 @@ struct Profile: View {
                     .foregroundColor(Color.white)
                     .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, alignment: .leading).padding(.leading, 18)
                 ModuloAjustes()
+                Spacer()
             }
         }
     }

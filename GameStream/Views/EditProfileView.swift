@@ -49,13 +49,13 @@ struct ModuloEditar: View {
                         .foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
                 }
                 
-                TextField("",text: $correo)
+                TextField("",text: $correo).foregroundColor(.white)
             }
             
             
             Divider()
                 .frame(height: 1.0)
-                .background(Color("dark-cian"))
+                .background(Color("dark-cian")).padding(.bottom, 15)
             
             Text("Contrasena").foregroundColor(.white)
 
@@ -67,13 +67,13 @@ struct ModuloEditar: View {
                         .foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
                 }
                 
-                SecureField("",text: $correo).foregroundColor(.white)
+                SecureField("",text: $contrasena).foregroundColor(.white)
             }
             
             
             Divider()
                 .frame(height: 1.0)
-                .background(Color("dark-cian"))
+                .background(Color("dark-cian")).padding(.bottom, 15)
             
             Text("Nombre").foregroundColor(.white)
 
@@ -85,7 +85,7 @@ struct ModuloEditar: View {
                         .foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
                 }
                 
-                TextField("",text: $correo).foregroundColor(.white)
+                TextField("",text: $nombre).foregroundColor(.white)
             }
             
             
@@ -110,6 +110,13 @@ struct ModuloEditar: View {
     }
     
     func actualizarDatos() {
+        
+        let objetoActualizadorDatos = SaveData()
+        
+        let resultado = objetoActualizadorDatos.guardarDatos(correo: correo, contrasena: contrasena, nombre: nombre)
+        
+        print("Se guardaron los datos con exito? \(resultado)")
+        
         print("Guardando y recuperando datos del usuario")
     }
 }
