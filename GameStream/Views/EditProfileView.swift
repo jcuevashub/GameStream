@@ -25,7 +25,7 @@ struct EditProfileView: View {
                                 .frame(width: 118.0, height: 118.0, alignment: .center)
                                 .clipShape(Circle())
                                 .sheet(isPresented: $isCameraActive, content: {
-                                    SUImagePickerView(sourceType: .photoLibrary, image: $imagenPerfil, isPresented: $isCameraActive)
+                                    SUImagePickerView(sourceType: .photoLibrary, image: self.$imagenPerfil, isPresented: $isCameraActive)
                                 })
                             
                             Image(systemName: "camera").foregroundColor(.white)
