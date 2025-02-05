@@ -23,7 +23,7 @@ Requirements
 Steps
 	1.	Clone the repository:
 
-git clone [https://github.com/yourusername/GameStream.git](https://github.com/jcuevashub/GameStream.git](https://github.com/jcuevashub/GameStream.git)
+git clone https://github.com/jcuevashub/GameStream.git
 
 
 	2.	Open the project in Xcode:
